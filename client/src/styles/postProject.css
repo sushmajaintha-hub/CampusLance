@@ -1,0 +1,32 @@
+
+.post-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.post-container h2 {
+  margin-bottom: 20px;
+}
+
+.post-container input,
+.post-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.post-container button {
+  background: #2563eb;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.post-container button:hover {
+  background: #1e40af;
+}

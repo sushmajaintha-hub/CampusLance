@@ -1,0 +1,24 @@
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#1e293b;
+color:white;
+}
+
+.logo{
+font-weight:600;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:#38bdf8;
+}
