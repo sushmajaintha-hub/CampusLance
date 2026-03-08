@@ -1,17 +1,22 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login"; 
-import ClientDashboard from "./pages/ClientDashboard"; 
-import StudentDashboard from "./pages/StudentDashboard"; 
-import ProtectedRoute from "./components/ProtectedRoute"; 
-import Profile from "./pages/Profile"; 
-import EditProfile from "./pages/EditProfile"; 
-import PostProject from "./pages/PostProject"; 
-import ProjectProgress from "./pages/ProjectProgress"; 
-import Projects from "./pages/Projects"; 
-import ChatPage from "./pages/ChatPage"; 
-import Notifications from "./pages/Notifications"; 
-import Navbar from "./components/Navbar"; 
+
+import Login from "./pages/Login";
+import ClientDashboard from "./pages/ClientDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
+import PostProject from "./pages/PostProject";
+import ProjectProgress from "./pages/ProjectProgress";
+import Projects from "./pages/Projects";
+import ChatPage from "./pages/ChatPage";
+import Notifications from "./pages/Notifications";
+
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
