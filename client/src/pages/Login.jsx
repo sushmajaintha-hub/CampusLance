@@ -25,13 +25,30 @@ function Login() {
         password
       });
 
-      // store token
+      // Save token
       localStorage.setItem("token", res.data.token);
+
+      // Save user data
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Login successful");
 
-      // redirect to dashboard
-      navigate("/student-dashboard");
+      // Get user role
+      const role = res.data.user?.role;
+
+      // Redirect based on role
+      if (role === "student") {
+        navigate("/student-dashboard");
+      } 
+      else if (role === "client") {
+        navigate("/client-dashboard");
+      } 
+      else if (role === "admin") {
+        navigate("/admin-dashboard");
+      } 
+      else {
+        navigate("/");
+      }
 
     } catch (error) {
 
