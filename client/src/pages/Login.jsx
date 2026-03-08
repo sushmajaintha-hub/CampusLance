@@ -4,74 +4,92 @@ import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
-function Login(){
+function Login() {
 
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const handleLogin = async(e)=>{
+  const handleLogin = async (e) => {
 
-e.preventDefault();
+    e.preventDefault();
 
-try{
+    try {
 
-const res = await API.post("/auth/login",{email,password});
+      setLoading(true);
 
-localStorage.setItem("token",res.data.token);
+      const res = await API.post("/auth/login", {
+        email,
+        password
+      });
 
-alert("Login successful");
+      // store token
+      localStorage.setItem("token", res.data.token);
 
-navigate("/student-dashboard");
+      alert("Login successful");
 
-}catch(error){
+      // redirect to dashboard
+      navigate("/student-dashboard");
 
-alert("Invalid credentials");
+    } catch (error) {
 
-}
+      console.error("Login error:", error);
 
-}
+      if (error.response) {
+        alert(error.response.data.message || "Invalid credentials");
+      } else {
+        alert("Server error. Please try again.");
+      }
 
-return(
+    } finally {
 
-<div className="login-page">
+      setLoading(false);
 
-<div className="login-card">
+    }
 
-<h2>CampusLance</h2>
+  };
 
-<p className="subtitle">Find projects. Work with clients.</p>
+  return (
 
-<form onSubmit={handleLogin}>
+    <div className="login-page">
 
-<input
-type="email"
-placeholder="Email"
-value={email}
-onChange={(e)=>setEmail(e.target.value)}
-required
-/>
+      <div className="login-card">
 
-<input
-type="password"
-placeholder="Password"
-value={password}
-onChange={(e)=>setPassword(e.target.value)}
-required
-/>
+        <h2>CampusLance</h2>
 
-<button type="submit">
-Login
-</button>
+        <p className="subtitle">Find projects. Work with clients.</p>
 
-</form>
+        <form onSubmit={handleLogin}>
 
-</div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-</div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-)
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  );
 
 }
 

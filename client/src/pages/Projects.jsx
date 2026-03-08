@@ -7,13 +7,17 @@ import ProjectSearch from "../components/ProjectSearch";
 function Projects() {
 
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // FETCH PROJECTS
   useEffect(() => {
     fetchProjects();
   }, []);
 
   const fetchProjects = async () => {
     try {
+
+      setLoading(true);
 
       const res = await API.get("/projects");
 
@@ -24,11 +28,18 @@ function Projects() {
       setProjects(openProjects);
 
     } catch (error) {
+
+      console.error("Fetch projects error:", error);
       alert("Error fetching projects");
+
+    } finally {
+
+      setLoading(false);
+
     }
   };
 
-  // 🔎 SEARCH PROJECTS
+  // SEARCH PROJECTS
   const searchProjects = async (filters) => {
 
     try {
@@ -40,12 +51,15 @@ function Projects() {
       setProjects(res.data);
 
     } catch (error) {
+
+      console.error("Search error:", error);
       alert("Search failed");
+
     }
 
   };
 
-  // 💳 PAYMENT FUNCTION
+  // PAYMENT FUNCTION
   const payProject = async (projectId) => {
 
     try {
@@ -58,11 +72,22 @@ function Projects() {
 
     } catch (error) {
 
+      console.error("Payment error:", error);
       alert("Payment failed");
 
     }
 
   };
+
+  // LOADING STATE
+  if (loading) {
+    return (
+      <div className="projects-container">
+        <h2>Available Projects</h2>
+        <p>Loading projects...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="projects-container">
