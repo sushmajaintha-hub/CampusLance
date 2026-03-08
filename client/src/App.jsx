@@ -8,7 +8,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile";
 import EditProfile from "./pages/EditProfile";
 import PostProject from "./pages/PostProject";
 import ProjectProgress from "./pages/ProjectProgress";
